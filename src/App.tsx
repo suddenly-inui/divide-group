@@ -8,13 +8,19 @@ function App() {
   const users: { name: string; id: number; guraduate: boolean; }[] = [
     { name: "gozu", id: 1, guraduate: false },
     { name: "inui", id: 2, guraduate: false },
-    { name: "bekku", id: 3, guraduate: true },
-    { name: "akiho", id: 4, guraduate: true },
+    { name: "tsukky", id: 3, guraduate: false },
+    { name: "higu", id: 4, guraduate: false },
+    { name: "naoyashi", id: 5, guraduate: false },
+    { name: "shusuke", id: 6, guraduate: true },
+    { name: "synth", id: 7, guraduate: true },
+    { name: "hamachu", id: 8, guraduate: true },
+    { name: "bekku", id: 9, guraduate: true },
+    { name: "akiho", id: 10, guraduate: true },
   ]
   //Undergraduate user list
-  const undergraduates = users.filter((user) => user.guraduate === false);
+  let undergraduates = users.filter((user) => user.guraduate === false);
   //Graduate user list
-  const graduates = users.filter((user) => user.guraduate === true);
+  let graduates = users.filter((user) => user.guraduate === true);
 
 
   let b_users: string[] = ["gozu", "inui", "tsukky", "higu", "naoyasi"]
@@ -28,12 +34,18 @@ function App() {
 
     while (arr.length > 0) {
       tmpArr = arr.splice(0, div);
-      group.push(<li>{tmpArr + ", "}</li>)
+      let n = ""
+      for (let i of tmpArr) {
+        n = n + i.name + ","
+      }
+      group.push(<li>{n}</li>)
     }
+    console.log(group);
+
     return group
   }
 
-  function shuffle(array: string[]): string[] {
+  function shuffle(array: any): any[] {
     let obj: any = {};
 
     for (let i = 0; i < array.length; i++) {
@@ -51,11 +63,11 @@ function App() {
 
   let b_group: any = [];
   let m_group: any = [];
-  if (group_num) {
-    b_users = shuffle(b_users)
-    m_users = shuffle(m_users)
-    b_group = fn(b_users, group_num)
-    m_group = fn(m_users, group_num)
+  if (true) {
+    graduates = shuffle(graduates)
+    undergraduates = shuffle(undergraduates)
+    b_group = fn(undergraduates, group_num)
+    m_group = fn(graduates, group_num)
   }
 
   return (
